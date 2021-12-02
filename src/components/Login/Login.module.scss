@@ -1,1 +1,68 @@
 @import "./src/common/commonStyles";
+
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 1084px;
+    height: max-content;
+    margin: auto;
+}
+
+.login {
+    display: flex;
+}
+
+.info {
+    width: 390px;
+    padding: 55px 40px 40px 55px;
+}
+
+.photoContainer {
+    width: 694px;
+    position: relative;
+}
+
+.photo {
+    object-fit: cover;
+    width: 100%;
+    display: block;
+}
+
+.title {
+    width: max-content;
+    position: absolute;
+    font-size: 38px;
+    color: white;
+    font-weight: bold;
+    margin: auto;
+    letter-spacing: -1.38px;
+    bottom: 76px;
+    right: 40px;
+}
+
+.subtitle {
+    margin: auto;
+    bottom: 40px;
+    right: 40px;
+    color: white;
+    position: absolute;
+    width: max-content;
+    font-size: 28px;
+    letter-spacing: -1.02px;
+}
+
+@media (max-width: 1600px) {
+    .photoContainer {
+        max-height: 649px;
+    }
+    .photo {
+        border-radius: 0 10px 10px 0;
+        max-height: inherit;
+        object-fit: cover;
+    }
+}

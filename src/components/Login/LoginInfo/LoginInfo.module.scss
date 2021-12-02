@@ -1,0 +1,56 @@
+@import "./src/common/commonStyles";
+
+.info {
+
+}
+
+.leaders {
+    height: 70px;
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.tatarstan {
+    height: 70px;
+    display: inline-block;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.8px;
+    color: #000;
+    margin: 65px 0 42px;
+}
+
+.form {
+    position: relative;
+}
+
+.submitBtn {
+    margin: 70px auto 0;
+    cursor: pointer;
+    width: max-content;
+
+    & img {
+        display: block;
+        width: 66px;
+    }
+}
+
+.team {
+    position: absolute;
+    bottom: 40px;
+    left: 55px;
+    margin: auto;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(0,0,0,0.4);
+}
+
+@media (max-width: 1600px) {
+    .submitBtn {
+        margin: 45px auto;
+    }
+}
