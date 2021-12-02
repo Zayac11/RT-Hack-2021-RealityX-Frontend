@@ -11,27 +11,27 @@ let initialState = {
 
 const authReducer = (state = initialState, action: AuthActionsType):InitialStateType  => {
     switch (action.type) {
-        case 'AW/AUTH/LOGIN':
+        case 'RT/AUTH/LOGIN':
             return {
                 ...state,
                 isAuth: action.payload.isAuth,
             }
-        case 'AW/AUTH/LOGOUT':
+        case 'RT/AUTH/LOGOUT':
             return {
                 ...state,
                 isAuth: false,
             }
-        case 'AW/AUTH/IS_USER_LOGIN': //Если пользователь только что залогинился
+        case 'RT/AUTH/IS_USER_LOGIN': //Если пользователь только что залогинился
             return {
                 ...state,
                 isLogin: action.payload.isLogin,
             }
-        case 'AW/AUTH/IS_ADMIN_INITIALIZE': //Если произошла инициализация админа
+        case 'RT/AUTH/IS_ADMIN_INITIALIZE': //Если произошла инициализация админа
             return {
                 ...state,
                 isAdminInitialize: action.payload.isAdminInitialize,
             }
-        case 'AW/AUTH/SET_LOGIN_ERROR': //Неправильный логин или пароль
+        case 'RT/AUTH/SET_LOGIN_ERROR': //Неправильный логин или пароль
             return {
                 ...state,
                 isLoginError: action.payload.isLoginError,
@@ -46,15 +46,15 @@ export type AuthActionsType = InferActionsTypes<typeof authActions>
 
 export const authActions = {
     login: (isAuth: boolean) =>
-        ({type: 'AW/AUTH/LOGIN', payload: {isAuth}} as const),
+        ({type: 'RT/AUTH/LOGIN', payload: {isAuth}} as const),
     logout: () =>
-        ({type: 'AW/AUTH/LOGOUT', payload: {}} as const),
+        ({type: 'RT/AUTH/LOGOUT', payload: {}} as const),
     setIsUserLogin: (isLogin: boolean) =>
-        ({type: 'AW/AUTH/IS_USER_LOGIN', payload: {isLogin}} as const),
+        ({type: 'RT/AUTH/IS_USER_LOGIN', payload: {isLogin}} as const),
     setIsAdminInitialize: (isAdminInitialize: boolean) =>
-        ({type: 'AW/AUTH/IS_ADMIN_INITIALIZE', payload: {isAdminInitialize}} as const),
+        ({type: 'RT/AUTH/IS_ADMIN_INITIALIZE', payload: {isAdminInitialize}} as const),
     setLoginError: (isLoginError: boolean) =>
-        ({type: 'AW/AUTH/SET_LOGIN_ERROR', payload: {isLoginError}} as const),
+        ({type: 'RT/AUTH/SET_LOGIN_ERROR', payload: {isLoginError}} as const),
 }
 
 type ThunkType = BaseThunkType<AuthActionsType>
