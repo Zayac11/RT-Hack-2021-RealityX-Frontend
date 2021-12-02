@@ -8,7 +8,8 @@ export enum StatusCodesEnum {
     ServerError = 500,
 }
 
-export type ErrorResponseType<M = '', RC = StatusCodesEnum> = {
+export type APIResponseType<D={}, M = '', RC = StatusCodesEnum> = {
     message: M
     status: RC
+    data: D
 }
