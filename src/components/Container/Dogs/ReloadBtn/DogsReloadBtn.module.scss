@@ -1,0 +1,52 @@
+@import "./src/common/commonStyles";
+
+.container {
+    @include flexible();
+    justify-content: space-between;
+    width: 100%;
+}
+
+.refresh {
+    cursor: pointer;
+    background-color: #32b03d;
+    padding: 15px 33px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.67;
+    text-align: center;
+    color: #fff;
+    @include flexible();
+    margin-right: 30px;
+    transition: all 0.2s ease;
+    &:active {
+        background-color: #258E2E;
+    }
+}
+
+.refreshImg {
+    margin-left: 12px;
+}
+
+.fetch {
+    animation: rotating 2s linear infinite
+}
+
+@keyframes rotating {
+    from{
+        -webkit-transform: rotate(0deg);
+    }
+    to{
+        -webkit-transform: rotate(-360deg);
+    }
+}
+
+.time {
+    opacity: 0.5;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+    & span {
+        margin-left: 10px;
+    }
+}

@@ -1,37 +1,34 @@
-import React, {useEffect, useState} from 'react';
-import s from './Rubbish.module.scss'
+import React, {useEffect} from 'react';
+import s from './Dogs.module.scss'
 import {motion} from "framer-motion";
 import logout from '../../../assets/images/logout.svg'
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../redux/redux-store";
-import {getCameras, updateCameras} from "../../../redux/rubbish-reducer";
-import MapComponent from "./MapComponent/MapComponent";
-import ReloadBtn from "./ReloadBtn/ReloadBtn";
-import MapRouteBtn from './MapRouteBtn/MapRouteBtn';
+import DogsMapComponent from "./DogsMapComponent/DogsMapComponent";
+import DogsReloadBtn from "./ReloadBtn/DogsReloadBtn";
 import {NavLink, useNavigate} from "react-router-dom";
-import ModalAddress from "./ModalAddress/ModalAddress";
 import {getCurrentDate} from "../../../utils/utils";
+import {getDogsCameras, updateDogsCameras} from "../../../redux/dogs-reducer";
 
-const Rubbish = () => {
+const Dogs = () => {
     const dispatch = useDispatch()
     const navigation = useNavigate()
-    const [visible, setVisible] = useState(false)
 
-    const cameras = useSelector((state: AppStateType) => state.rubbish.cameras)
-    const timestamp = useSelector((state: AppStateType) => state.rubbish.timestamp)
+    const cameras = useSelector((state: AppStateType) => state.dogs.cameras)
+    const timestamp = useSelector((state: AppStateType) => state.dogs.timestamp)
     const isFetch = useSelector((state: AppStateType) => state.rubbish.isFetch)
 
     const handleUpdate = () => {
-        dispatch(updateCameras())
+        dispatch(updateDogsCameras())
     }
 
     useEffect(() => {
-        dispatch(getCameras())
+        dispatch(getDogsCameras())
     }, [])
 
     const handleClick = (uid: number) => {
         navigation({
-            pathname: 'camera/'+uid,
+            pathname: 'dogs/camera/'+uid,
         });
     }
     return (
@@ -48,12 +45,12 @@ const Rubbish = () => {
                                 SAFECITY
                             </NavLink>
                             <div className={s.links}>
-                                <div className={s.current}>
+                                <NavLink to='/' className={s.link}>
                                     ДЕТЕКЦИЯ МУСОРА
-                                </div>
-                                <NavLink className={s.link} to='/dogs'>
-                                    ДЕТЕКЦИЯ СОБАК
                                 </NavLink>
+                                <div className={s.current}>
+                                    ДЕТЕКЦИЯ СОБАК
+                                </div>
                             </div>
                             <div className={s.logout}>
                                 Выйти
@@ -61,22 +58,20 @@ const Rubbish = () => {
                             </div>
                         </div>
                         <motion.div className={s.mapContainer} variants={animationItem}>
-                            <h2 className={s.title}>Карта c расположением видеокамер</h2>
-                            <MapComponent cameras={cameras} handleClick={handleClick} />
+                            <h2 className={s.title}>Карта c расположением бездомных собак</h2>
+                            <DogsMapComponent cameras={cameras} handleClick={handleClick} />
                             <div className={s.buttons}>
-                                <ReloadBtn isFetch={isFetch} handleUpdate={handleUpdate} timestamp={getCurrentDate(timestamp)} />
-                                <MapRouteBtn setVisible={setVisible} />
+                                <DogsReloadBtn isFetch={isFetch} handleUpdate={handleUpdate} timestamp={getCurrentDate(timestamp)} />
                             </div>
                         </motion.div>
                     </div>
                 </motion.div>
             </div>
-            <ModalAddress visible={visible} setVisible={setVisible} />
         </>
     );
 };
 
-export default Rubbish;
+export default Dogs;
 
 const animationContainer = {
     hidden: {opacity: 1, scale: 1},

@@ -1,11 +1,11 @@
 import React, {FC} from 'react';
-import s from './MapComponent.module.scss'
+import s from './DogsMapComponent.module.scss'
 import {Clusterer, Map, Placemark, YMaps, ZoomControl} from "react-yandex-maps";
-import {CameraType} from "../../../../types/Types";
+import {CameraType, DogsCameraType} from "../../../../types/Types";
 import {useSelector} from "react-redux";
 import {AppStateType} from "../../../../redux/redux-store";
 
-const MapComponent:FC<MyProps> = ({cameras, handleClick}) => {
+const DogsMapComponent:FC<MyProps> = ({cameras, handleClick}) => {
     const isFetch = useSelector((state: AppStateType) => state.rubbish.isFetch)
     return (
         <div className={s.mapContainer}>
@@ -25,8 +25,8 @@ const MapComponent:FC<MyProps> = ({cameras, handleClick}) => {
                                 return (
                                     <Placemark key={item.uid} defaultGeometry={[Number(item.x_coordinate), Number(item.y_coordinate)]}
                                                onClick={() => handleClick(item.uid)}
-                                               defaultOptions={{preset: item.is_filled ? "islands#redDotIcon" : "islands#darkGreenDotIcon",
-                                                   iconColor: item.is_filled ? 'red' : 'darkGreen',
+                                               defaultOptions={{preset: item.number_of_dogs > 2 ? "islands#redDotIcon" : "islands#darkGreenDotIcon",
+                                                   iconColor: item.number_of_dogs > 2 ? 'red' : 'darkGreen',
                                                }}
                                     />
                                 )
@@ -42,9 +42,9 @@ const MapComponent:FC<MyProps> = ({cameras, handleClick}) => {
     );
 };
 
-export default MapComponent;
+export default DogsMapComponent;
 
 type MyProps = {
-    cameras: Array<CameraType>,
+    cameras: Array<DogsCameraType>,
     handleClick: (uid: number) => void
 }

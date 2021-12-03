@@ -2,10 +2,12 @@ import {Action, applyMiddleware, combineReducers, createStore} from "redux";
 import thunkMiddleware, {ThunkAction}from 'redux-thunk';
 import authReducer from "./auth-reducer";
 import rubbishReducer from "./rubbish-reducer";
+import dogsReducer from "./dogs-reducer";
 
 let rootReducer  = combineReducers({
     auth: authReducer,
     rubbish: rubbishReducer,
+    dogs: dogsReducer,
 });
 
 type RootReducerType = typeof rootReducer
