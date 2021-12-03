@@ -28,6 +28,12 @@ const MapComponent:FC<MyProps> = ({cameras, handleClick}) => {
                                 )
                             })
                         }
+                        <Placemark defaultGeometry={[54.901171, 52.297230]}
+                                   onClick={() => handleClick(1)}
+                                   defaultOptions={{preset: true ? "islands#redDotIcon" : "islands#darkGreenDotIcon",
+                                       iconColor: true ? 'red' : 'darkGreen',
+                                   }}
+                        />
                     </Clusterer>
 
                     <ZoomControl defaultOptions={{size: "small"}}/>

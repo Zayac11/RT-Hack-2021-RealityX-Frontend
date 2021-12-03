@@ -12,11 +12,11 @@ export type GetCurrentCameraResponseType = {
 
 export const rubbishAPI = {
     getCameras() {
-        return axios.get<APIResponseType<GetCamerasResponseType>>(baseURL + `api/get_all_cameras`)
+        return axios.get<APIResponseType<GetCamerasResponseType>>(baseURL + `api/trash/get_all_cameras`)
             .then(response => response.data)
     },
     getCurrentCamera(id: number) {
-        return axios.get<APIResponseType<GetCurrentCameraResponseType>>(baseURL + `api/get_camera/${id}`)
+        return axios.get<APIResponseType<GetCurrentCameraResponseType>>(baseURL + `api/trash/get_camera/${id}`)
             .then(response => response.data)
     },
 }

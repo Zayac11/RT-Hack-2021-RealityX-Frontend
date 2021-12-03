@@ -1,0 +1,9 @@
+@import "./src/common/commonStyles.scss";
+
+.modal {
+    padding: 28px 34px 20px 40px;
+    width: 1250px !important;
+    fill: white;
+    border-radius: 10px;
+    color: var(--modal-color, white) !important;
+}

@@ -3,5 +3,6 @@ export type CameraType = {
     x_coordinate: string,
     y_coordinate: string,
     is_filled: boolean,
-    address?: string
+    address?: string,
+    last_img?: string,
 }

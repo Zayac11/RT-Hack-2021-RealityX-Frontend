@@ -3,17 +3,15 @@ import s from './Rubbish.module.scss'
 import {motion} from "framer-motion";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../redux/redux-store";
-import ModalInfo from './ModalInfo/ModalInfo';
 import {getCameras} from "../../../redux/rubbish-reducer";
 import MapComponent from "./MapComponent/MapComponent";
 import ReloadBtn from "./ReloadBtn/ReloadBtn";
 import MapRouteBtn from './MapRouteBtn/MapRouteBtn';
+import {useNavigate} from "react-router-dom";
 
 const Rubbish = () => {
     const dispatch = useDispatch()
-
-    const [visible, setVisible] = useState(false);
-    const [currentId, setCurrentId] = useState<number | null>(null);
+    const navigation = useNavigate()
 
     const cameras = useSelector((state: AppStateType) => state.rubbish.cameras)
 
@@ -22,8 +20,9 @@ const Rubbish = () => {
     }, [])
 
     const handleClick = (uid: number) => {
-        setCurrentId(uid)
-        setVisible(true)
+        navigation({
+            pathname: 'camera/'+uid,
+        });
     }
     return (
         <>
@@ -53,8 +52,6 @@ const Rubbish = () => {
                     </div>
                 </motion.div>
             </div>
-
-            <ModalInfo visible={visible} setVisible={setVisible} uid={currentId} />
         </>
     );
 };
