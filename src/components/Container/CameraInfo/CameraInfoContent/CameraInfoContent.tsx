@@ -10,6 +10,7 @@ import loupe from '../../../../assets/images/camera_loupe.svg'
 import arrow from '../../../../assets/images/back_arrow.png'
 import {getCurrentDate} from "../../../../utils/utils";
 import CameraInfoStatus from './CameraInfoStatus/CameraInfoStatus';
+import NotifyButton from "../../../../common/NotifyButton/NotifyButton";
 
 const CameraInfoContent:FC<MyProps> = ({cameraData}) => {
     return (
@@ -34,6 +35,7 @@ const CameraInfoContent:FC<MyProps> = ({cameraData}) => {
                         <CameraInfoItem img={time} label={'Время кадра'} data={getCurrentDate(cameraData.timestamp || '')} alt='Time' />
                         <CameraInfoStatus img={loupe} label={'Статус'} data={cameraData.is_filled || false} alt='Status' />
                     </div>
+                    <NotifyButton />
                 </div>
             </div>
             <div className={s.graph}>

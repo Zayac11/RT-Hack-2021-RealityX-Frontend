@@ -12,6 +12,7 @@ import {getCurrentDate} from "../../../../utils/utils";
 import DogsCameraInfoStatus from './DogsCameraInfoStatus/DogsCameraInfoStatus';
 import {useSelector} from "react-redux";
 import {AppStateType} from "../../../../redux/redux-store";
+import NotifyButton from "../../../../common/NotifyButton/NotifyButton";
 
 const DogsCameraInfoContent:FC<MyProps> = ({cameraData}) => {
     const events = useSelector((state: AppStateType) => state.dogs.events)
@@ -40,6 +41,7 @@ const DogsCameraInfoContent:FC<MyProps> = ({cameraData}) => {
                             events[0].dog_number > 2) || false
                         } alt='Status' />
                     </div>
+                    <NotifyButton />
                 </div>
             </div>
             <div className={s.graph}>

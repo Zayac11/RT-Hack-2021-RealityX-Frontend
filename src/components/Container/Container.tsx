@@ -7,6 +7,7 @@ import Dogs from "./Dogs/Dogs";
 import DogsCameraInfo from "./DogsCameraInfo/DogsCameraInfo";
 import {useSelector} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
+import {ToastContainer} from "react-toastify";
 
 const Container:FC = () => {
     const isAuth = useSelector((state:AppStateType) => state.auth.isAuth)
@@ -23,6 +24,7 @@ const Container:FC = () => {
                 <Route path='/camera/:uid' element={<CameraInfo />}/>
                 <Route path='/' element={<Rubbish />}/>
             </Routes>
+
         </>
     );
 };

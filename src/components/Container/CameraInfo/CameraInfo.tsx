@@ -12,7 +12,7 @@ const CameraInfo:FC = () => {
     const params = useParams()
 
     const dispatch = useDispatch()
-    const [uid, setUid] = useState(Number(params.uid))
+    const [uid] = useState(Number(params.uid))
     const isFetch = useSelector((state: AppStateType) => state.rubbish.isFetch)
     const cameraData = useSelector((state: AppStateType) => state.rubbish.cameraData)
 
