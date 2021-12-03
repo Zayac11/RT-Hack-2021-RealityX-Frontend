@@ -1,3 +1,5 @@
+import {CameraType} from "../types/Types";
+
 export const getCurrentDate = (timestamp: string) => {
     let date = new Date(timestamp)
     const dd = String(date.getDate()).padStart(2, '0');
@@ -8,4 +10,13 @@ export const getCurrentDate = (timestamp: string) => {
     const seconds = date.getSeconds();
 
     return mm + '.' + dd + '.' + yyyy + ' ' + hour + ':' + minutes + ':' + seconds
+}
+
+export const getFilledCoordinates = (cameras: Array<CameraType>, start: string, end: string) => {
+    let filledCoordinatesItems = []
+    let filledCoordinates = []
+    filledCoordinatesItems = cameras.filter((item) => item.is_filled)
+    filledCoordinates = filledCoordinatesItems.map((item) => [Number(item.x_coordinate), Number(item.y_coordinate)])
+    console.log([start, ...filledCoordinates, end])
+    return [start, ...filledCoordinates, end]
 }

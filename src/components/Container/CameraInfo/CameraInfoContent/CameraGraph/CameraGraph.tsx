@@ -34,7 +34,7 @@ const CameraGraph = () => {
     }, [events])
 
     const options = {
-        responsive: true,
+        responsive: false,
         plugins: {},
     };
     const labels = [];
@@ -45,7 +45,7 @@ const CameraGraph = () => {
         labels,
         datasets: [
             {
-                label: 'Мусорки',
+                label: 'Наполненные контейнеры',
                 data: numbers,
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
                 borderColor: 'rgb(255, 99, 132)',
@@ -57,7 +57,7 @@ const CameraGraph = () => {
 
     return (
         <>
-            <Line className={s.graph} width={1200} height={300} options={options} data={data} />
+            <Line className={s.graph} width={1360} height={300} options={options} data={data} />
         </>
     );
 };
