@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import s from './Rubbish.module.scss'
 import {motion} from "framer-motion";
 import {useDispatch, useSelector} from "react-redux";
@@ -8,10 +8,12 @@ import MapComponent from "./MapComponent/MapComponent";
 import ReloadBtn from "./ReloadBtn/ReloadBtn";
 import MapRouteBtn from './MapRouteBtn/MapRouteBtn';
 import {useNavigate} from "react-router-dom";
+import ModalAddress from "./ModalAddress/ModalAddress";
 
 const Rubbish = () => {
     const dispatch = useDispatch()
     const navigation = useNavigate()
+    const [visible, setVisible] = useState(false)
 
     const cameras = useSelector((state: AppStateType) => state.rubbish.cameras)
     const isFetch = useSelector((state: AppStateType) => state.rubbish.isFetch)
@@ -51,12 +53,13 @@ const Rubbish = () => {
                             <MapComponent cameras={cameras} handleClick={handleClick} />
                             <div className={s.buttons}>
                                 <ReloadBtn isFetch={isFetch} handleUpdate={handleUpdate} timestamp={'01.12.21, 13:09:31'} />
-                                <MapRouteBtn />
+                                <MapRouteBtn setVisible={setVisible} />
                             </div>
                         </motion.div>
                     </div>
                 </motion.div>
             </div>
+            <ModalAddress visible={visible} setVisible={setVisible} />
         </>
     );
 };

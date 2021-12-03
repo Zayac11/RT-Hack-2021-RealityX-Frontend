@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {FC} from 'react';
 import s from './MapRouteBtn.module.scss'
 import point from "../../../../assets/images/map_point.svg";
 
-const MapRouteBtn = () => {
+const MapRouteBtn:FC<{setVisible: (isVisible: boolean) => void}> = ({setVisible}) => {
     return (
-        <div className={s.container}>
+        <div onClick={() => setVisible(true)} className={s.container}>
             ПОСТРОИТЬ МАРШРУТ
             <img src={point} alt='point' />
         </div>

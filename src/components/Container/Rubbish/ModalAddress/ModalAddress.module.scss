@@ -1,0 +1,10 @@
+@import "./src/common/commonStyles";
+
+.modal {
+    position: relative;
+    width: 362px !important;
+    //color: var(--modal-color, white) !important;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
