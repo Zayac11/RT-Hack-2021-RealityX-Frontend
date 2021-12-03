@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import s from './Rubbish.module.scss'
 import {motion} from "framer-motion";
+import logout from '../../../assets/images/logout.svg'
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../redux/redux-store";
 import {getCameras, updateCameras} from "../../../redux/rubbish-reducer";
@@ -44,10 +45,19 @@ const Rubbish = () => {
                     <div className={s.top}>
                         <div className={s.topInner}>
                             <NavLink to='/' className={s.name}>
-                                ANYSEARCH
+                                SAFECITY
                             </NavLink>
+                            <div className={s.links}>
+                                <div className={s.current}>
+                                    ДЕТЕКЦИЯ МУСОРА
+                                </div>
+                                <NavLink className={s.link} to='/'>
+                                    ДЕТЕКЦИЯ СОБАК
+                                </NavLink>
+                            </div>
                             <div className={s.logout}>
                                 Выйти
+                                <img src={logout} alt='logout' />
                             </div>
                         </div>
                         <motion.div className={s.mapContainer} variants={animationItem}>

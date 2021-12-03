@@ -44,7 +44,7 @@ const Login = () => {
                     </div>
                     <div className={s.photoContainer}>
                         <img className={s.photo} src={back} alt='city' />
-                        <h1 className={s.title}>ANYSEARCH</h1>
+                        <h1 className={s.title}>SAFECITY</h1>
                         <div className={s.subtitle}>Фокус на ваше благополучие</div>
                     </div>
                 </div>

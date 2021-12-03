@@ -30,8 +30,16 @@ const RubbishRoute:FC = () => {
                 <div className={s.top}>
                     <div className={s.topInner}>
                         <NavLink to='/' className={s.name}>
-                            ANYSEARCH
+                            SAFECITY
                         </NavLink>
+                        <div className={s.links}>
+                            <div className={s.current}>
+                                ДЕТЕКЦИЯ МУСОРА
+                            </div>
+                            <NavLink className={s.link} to='/'>
+                                ДЕТЕКЦИЯ СОБАК
+                            </NavLink>
+                        </div>
                         <div className={s.logout}>
                             Выйти
                         </div>
