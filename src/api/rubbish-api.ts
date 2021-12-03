@@ -15,6 +15,10 @@ export const rubbishAPI = {
         return axios.get<APIResponseType<GetCamerasResponseType>>(baseURL + `api/trash/get_all_cameras`)
             .then(response => response.data)
     },
+    updateCameras() {
+        return axios.get<APIResponseType<GetCamerasResponseType>>(baseURL + `api/trash/update_cameras`)
+            .then(response => response.data)
+    },
     getCurrentCamera(id: number) {
         return axios.get<APIResponseType<GetCurrentCameraResponseType>>(baseURL + `api/trash/get_camera/${id}`)
             .then(response => response.data)

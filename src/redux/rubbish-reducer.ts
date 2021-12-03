@@ -8,6 +8,7 @@ let initialState = {
     timestamp: '' as string,
     cameras: [] as Array<CameraType>,
     cameraData: {} as CameraType,
+    isFetch: false as boolean,
 }
 
 const rubbishReducer = (state = initialState, action: RubbishActionsType):InitialStateType  => {
@@ -23,6 +24,11 @@ const rubbishReducer = (state = initialState, action: RubbishActionsType):Initia
                 ...state,
                 cameraData: action.payload.camera,
             }
+        case 'RT/RUBBISH/TOGGLE_IS_FETCHING':
+            return {
+                ...state,
+                isFetch: action.payload.isFetch,
+            }
         default:
             return state;
     }
@@ -35,6 +41,8 @@ export const rubbishActions = {
         ({type: 'RT/RUBBISH/CAMERAS_RECEIVED', payload: {timestamp, cameras}} as const),
     currentCameraReceived: (camera: CameraType) =>
         ({type: 'RT/RUBBISH/CURRENT_CAMERA_RECEIVED', payload: {camera}} as const),
+    toggleIsFetching: (isFetch: boolean) =>
+        ({type: 'RT/RUBBISH/TOGGLE_IS_FETCHING', payload: {isFetch}} as const),
 
 }
 
@@ -42,29 +50,57 @@ type ThunkType = BaseThunkType<RubbishActionsType>
 
 export const getCameras = (): ThunkType => {
     return async (dispatch) => {
+        dispatch(rubbishActions.toggleIsFetching(true))
         try {
             let data = await rubbishAPI.getCameras()
             console.log('getCameras', data)
             if(data.status === StatusCodesEnum.Success) {
                 dispatch(rubbishActions.camerasReceived(data.data.timestamp, data.data.cameras))
             }
+            dispatch(rubbishActions.toggleIsFetching(false))
         }
         catch (e:any) {
+            dispatch(rubbishActions.toggleIsFetching(false))
+            alert('Some error')
             console.error('getCameras', e.config)
+        }
+    }
+}
+export const updateCameras = (): ThunkType => {
+    return async (dispatch) => {
+        dispatch(rubbishActions.toggleIsFetching(true))
+        try {
+            let data = await rubbishAPI.updateCameras()
+            console.log('updateCameras', data)
+            if(data.status === StatusCodesEnum.Success) {
+                dispatch(rubbishActions.camerasReceived(data.data.timestamp, data.data.cameras))
+            }
+            dispatch(rubbishActions.toggleIsFetching(false))
+        }
+        catch (e:any) {
+            alert('Some error')
+            console.error('updateCameras', e.config)
+            dispatch(rubbishActions.toggleIsFetching(false))
         }
     }
 }
 export const getCurrentCamera = (cameraId: number): ThunkType => {
     return async (dispatch) => {
+        dispatch(rubbishActions.toggleIsFetching(true))
         try {
             let data = await rubbishAPI.getCurrentCamera(cameraId)
             console.log('getCurrentCamera', data)
             if(data.status === StatusCodesEnum.Success) {
                 dispatch(rubbishActions.currentCameraReceived(data.data.camera))
             }
+            dispatch(rubbishActions.toggleIsFetching(false))
+
         }
         catch (e:any) {
+            alert('Some error')
             console.error('getCurrentCamera', e.config)
+            dispatch(rubbishActions.toggleIsFetching(false))
+
         }
     }
 }

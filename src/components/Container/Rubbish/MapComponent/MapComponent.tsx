@@ -2,8 +2,11 @@ import React, {FC} from 'react';
 import s from './MapComponent.module.scss'
 import {Clusterer, Map, Placemark, YMaps, ZoomControl} from "react-yandex-maps";
 import {CameraType} from "../../../../types/Types";
+import {useSelector} from "react-redux";
+import {AppStateType} from "../../../../redux/redux-store";
 
 const MapComponent:FC<MyProps> = ({cameras, handleClick}) => {
+    const isFetch = useSelector((state: AppStateType) => state.rubbish.isFetch)
     return (
         <div className={s.mapContainer}>
             <YMaps query={{ apikey: 'adcd12f1-d730-44e8-b757-a87de2b4b9db' }}>
@@ -16,7 +19,8 @@ const MapComponent:FC<MyProps> = ({cameras, handleClick}) => {
                         }}
                     >
                         {
-                            cameras?.length > 0 &&
+                            (!isFetch &&
+                            cameras?.length > 0) &&
                             cameras.map((item) => {
                                 return (
                                     <Placemark key={item.uid} defaultGeometry={[Number(item.x_coordinate), Number(item.y_coordinate)]}
@@ -28,12 +32,6 @@ const MapComponent:FC<MyProps> = ({cameras, handleClick}) => {
                                 )
                             })
                         }
-                        <Placemark defaultGeometry={[54.901171, 52.297230]}
-                                   onClick={() => handleClick(1)}
-                                   defaultOptions={{preset: true ? "islands#redDotIcon" : "islands#darkGreenDotIcon",
-                                       iconColor: true ? 'red' : 'darkGreen',
-                                   }}
-                        />
                     </Clusterer>
 
                     <ZoomControl defaultOptions={{size: "small"}}/>

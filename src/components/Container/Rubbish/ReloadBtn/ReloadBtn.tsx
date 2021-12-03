@@ -1,13 +1,17 @@
 import React, {FC} from 'react';
 import s from './ReloadBtn.module.scss'
 import refresh from '../../../../assets/images/refresh.svg'
+import cl from 'classnames'
 
-const ReloadBtn:FC<MyProps> = ({timestamp}) => {
+const ReloadBtn:FC<MyProps> = ({timestamp, handleUpdate, isFetch}) => {
+
+    const arr = [s.refreshImg, isFetch && s.fetch];
+
     return (
-        <div className={s.container}>
+        <div onClick={() => handleUpdate()} className={s.container}>
             <div className={s.refresh}>
                 ОБНОВИТЬ ДАННЫЕ
-                <img src={refresh} alt='refresh' />
+                <img className={cl(s.refreshImg, isFetch && s.fetch)} src={refresh} alt='refresh' />
             </div>
             <div className={s.time}>
                 Последнее обновление: <span>{timestamp}</span>
@@ -19,5 +23,7 @@ const ReloadBtn:FC<MyProps> = ({timestamp}) => {
 export default ReloadBtn;
 
 type MyProps = {
-    timestamp: string
+    timestamp: string,
+    handleUpdate: () => void,
+    isFetch: boolean,
 }

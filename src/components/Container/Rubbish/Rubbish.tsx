@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import s from './Rubbish.module.scss'
 import {motion} from "framer-motion";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../redux/redux-store";
-import {getCameras} from "../../../redux/rubbish-reducer";
+import {getCameras, updateCameras} from "../../../redux/rubbish-reducer";
 import MapComponent from "./MapComponent/MapComponent";
 import ReloadBtn from "./ReloadBtn/ReloadBtn";
 import MapRouteBtn from './MapRouteBtn/MapRouteBtn';
@@ -14,6 +14,11 @@ const Rubbish = () => {
     const navigation = useNavigate()
 
     const cameras = useSelector((state: AppStateType) => state.rubbish.cameras)
+    const isFetch = useSelector((state: AppStateType) => state.rubbish.isFetch)
+
+    const handleUpdate = () => {
+        dispatch(updateCameras())
+    }
 
     useEffect(() => {
         dispatch(getCameras())
@@ -45,7 +50,7 @@ const Rubbish = () => {
                             <h2 className={s.title}>Карта c расположением видеокамер</h2>
                             <MapComponent cameras={cameras} handleClick={handleClick} />
                             <div className={s.buttons}>
-                                <ReloadBtn timestamp={'01.12.21, 13:09:31'} />
+                                <ReloadBtn isFetch={isFetch} handleUpdate={handleUpdate} timestamp={'01.12.21, 13:09:31'} />
                                 <MapRouteBtn />
                             </div>
                         </motion.div>
