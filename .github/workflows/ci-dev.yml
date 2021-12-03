@@ -1,0 +1,23 @@
+name: CI-dev
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+jobs:
+  UpdateService:
+    runs-on: ubuntu-latest
+    steps:
+    - name: multiple command
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        script: |
+          rm -rf /home/user/hack/root-dev/frontend
+          git clone -b dev https://github.com/Zayac11/RT-Hack-2021-RealityX-Frontend.git /home/user/hack/root-dev/frontend
+          cd /home/user/hack/root-dev
+          TAG=dev docker-compose -f docker-compose.production.yml build frontend
+          docker service update --image rt_frontend:dev dev-rt_frontend --force
