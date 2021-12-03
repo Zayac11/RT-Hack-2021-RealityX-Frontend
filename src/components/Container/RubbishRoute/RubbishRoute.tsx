@@ -1,16 +1,13 @@
-import React, {FC, Ref, useCallback, useEffect, useRef, useState} from 'react';
+import React, {FC, useEffect} from 'react';
 import s from './RubbishRoute.module.scss'
-import { YMaps, Map } from 'react-yandex-maps';
 import {getCameras} from "../../../redux/rubbish-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../redux/redux-store";
 import {motion} from "framer-motion";
 import RubbishRouteMap from "./RubbishRouteMap/RubbishRouteMap";
-import MapComponent from "../Rubbish/MapComponent/MapComponent";
-import ReloadBtn from "../Rubbish/ReloadBtn/ReloadBtn";
-import {getCurrentDate} from "../../../utils/utils";
-import MapRouteBtn from "../Rubbish/MapRouteBtn/MapRouteBtn";
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
+import {handleLogout} from "../../../utils/utils";
+import logout from "../../../assets/images/logout.svg";
 
 const RubbishRoute:FC = () => {
     const dispatch = useDispatch()
@@ -40,8 +37,9 @@ const RubbishRoute:FC = () => {
                                 ДЕТЕКЦИЯ СОБАК
                             </NavLink>
                         </div>
-                        <div className={s.logout}>
+                        <div onClick={() => handleLogout(dispatch)} className={s.logout}>
                             Выйти
+                            <img src={logout} alt='logout' />
                         </div>
                     </div>
                     <motion.div className={s.mapContainer} variants={animationItem}>

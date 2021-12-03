@@ -71,11 +71,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// const RedirectComponent = () => {
-//     const navigate = useNavigate()
-//     navigate('/')
-//     return (
-//         <div></div>
-//     )
-// }

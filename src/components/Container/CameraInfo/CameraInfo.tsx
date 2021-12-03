@@ -6,6 +6,7 @@ import {AppStateType} from "../../../redux/redux-store";
 import CameraInfoContent from "./CameraInfoContent/CameraInfoContent";
 import {NavLink, useParams} from "react-router-dom";
 import logout from "../../../assets/images/logout.svg";
+import {handleLogout} from "../../../utils/utils";
 
 const CameraInfo:FC = () => {
     const params = useParams()
@@ -37,7 +38,7 @@ const CameraInfo:FC = () => {
                                 ДЕТЕКЦИЯ СОБАК
                             </NavLink>
                         </div>
-                        <div className={s.logout}>
+                        <div onClick={() => handleLogout(dispatch)} className={s.logout}>
                             Выйти
                             <img src={logout} alt='logout' />
                         </div>

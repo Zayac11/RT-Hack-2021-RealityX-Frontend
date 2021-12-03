@@ -1,4 +1,5 @@
 import {CameraType} from "../types/Types";
+import {authActions} from "../redux/auth-reducer";
 
 export const getCurrentDate = (timestamp: string) => {
     let date = new Date(timestamp)
@@ -19,4 +20,8 @@ export const getFilledCoordinates = (cameras: Array<CameraType>, start: string, 
     filledCoordinates = filledCoordinatesItems.map((item) => [Number(item.x_coordinate), Number(item.y_coordinate)])
     console.log([start, ...filledCoordinates, end])
     return [start, ...filledCoordinates, end]
+}
+export const handleLogout = (dispatch: any) => {
+    localStorage.removeItem('accessToken')
+    dispatch(authActions.logout())
 }

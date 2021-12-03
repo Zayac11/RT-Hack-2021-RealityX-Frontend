@@ -7,6 +7,7 @@ import DogsCameraInfoContent from "./DogsCameraInfoContent/DogsCameraInfoContent
 import {NavLink, useParams} from "react-router-dom";
 import logout from "../../../assets/images/logout.svg";
 import {getDogsCurrentCamera} from "../../../redux/dogs-reducer";
+import {handleLogout} from "../../../utils/utils";
 
 const DogsCameraInfo:FC = () => {
     const params = useParams()
@@ -38,7 +39,7 @@ const DogsCameraInfo:FC = () => {
                                 ДЕТЕКЦИЯ СОБАК
                             </div>
                         </div>
-                        <div className={s.logout}>
+                        <div onClick={() => handleLogout(dispatch)} className={s.logout}>
                             Выйти
                             <img src={logout} alt='logout' />
                         </div>

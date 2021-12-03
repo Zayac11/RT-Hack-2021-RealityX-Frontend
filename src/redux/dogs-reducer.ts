@@ -97,7 +97,6 @@ export const getDogsCurrentCamera = (cameraId: number): ThunkType => {
             alert('Some error')
             console.error('getCurrentDogsCamera', e.config)
             dispatch(rubbishActions.toggleIsFetching(false))
-
         }
     }
 }
