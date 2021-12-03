@@ -9,7 +9,7 @@ const MapComponent:FC<MyProps> = ({cameras, handleClick}) => {
     const isFetch = useSelector((state: AppStateType) => state.rubbish.isFetch)
     return (
         <div className={s.mapContainer}>
-            <YMaps query={{ apikey: process.env.REACT_APP_YANDEX_API_KEY || 'adcd12f1-d730-44e8-b757-a87de2b4b9db' }}>
+            <YMaps query={{ apikey: process.env.REACT_APP_YANDEX_API_KEY || '51294c2c-8c0b-4b35-b734-ea5700b611ec' }}>
                 <Map className={s.map}
                      defaultState={{ center: [54.901171, 52.297230], zoom: 14 }} >
                     <Clusterer

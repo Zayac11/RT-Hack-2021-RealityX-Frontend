@@ -38,7 +38,7 @@ const RubbishRouteMap = () => {
     };
 
     return (
-        <YMaps query={{ apikey: process.env.REACT_APP_YANDEX_API_KEY || 'adcd12f1-d730-44e8-b757-a87de2b4b9db' }}>
+        <YMaps query={{ apikey: process.env.REACT_APP_YANDEX_API_KEY || '51294c2c-8c0b-4b35-b734-ea5700b611ec' }}>
             <Map
                 className={s.map}
                 modules={["multiRouter.MultiRoute"]}

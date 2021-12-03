@@ -1,0 +1,80 @@
+@import "./src/common/commonStyles.scss";
+
+.outer {
+    background-color: #f3f3f3;
+    min-height: 100vh;
+}
+
+.topOuter {
+    background-color: #184735;
+    margin-bottom: 20px;
+}
+
+.top {
+    width: 1440px;
+    padding: 33px 20px;
+    margin: 0 auto;
+}
+.topInner {
+    @include flexible();
+    justify-content: space-between;
+}
+
+.name {
+    line-height: normal;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.8px;
+    color: #fff;
+}
+
+.logout {
+    @include flexible();
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.58px;
+    color: #fff;
+    & img {
+        display: block;
+        margin-left: 6px;
+        position: relative;
+    }
+}
+
+.links {
+    @include flexible();
+    padding: 0 0 0 27px;
+    border-radius: 23.5px;
+    border: solid 1px #fff;
+}
+
+.current {
+    cursor: pointer;
+    padding: 11px 23px 11px 21px;
+    border-radius: 23.5px;
+    background-color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.43;
+    text-align: center;
+    color: #172e4b;
+    margin-left: 29px;
+    animation: current 2s;
+}
+
+@keyframes current {
+    from {
+        background-color: #172e4b;
+        color: white;
+    }
+    to {
+        color: #172e4b;
+        background-color: #fff;
+    }
+}
+
+.link {
+    color: white;
+    display: block;
+}

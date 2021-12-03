@@ -4,6 +4,7 @@ import Rubbish from './Rubbish/Rubbish';
 import RubbishRoute from "./RubbishRoute/RubbishRoute";
 import CameraInfo from "./CameraInfo/CameraInfo";
 import Dogs from "./Dogs/Dogs";
+import DogsCameraInfo from "./DogsCameraInfo/DogsCameraInfo";
 
 const Container:FC = () => {
     return (
@@ -11,6 +12,7 @@ const Container:FC = () => {
             <Routes>
                 <Route path='/route' element={<RubbishRoute />}/>
                 <Route path='/dogs' element={<Dogs />}/>
+                <Route path='/dogs/camera/:uid' element={<DogsCameraInfo />}/>
                 <Route path='/camera/:uid' element={<CameraInfo />}/>
                 <Route path='/' element={<Rubbish />}/>
             </Routes>

@@ -28,7 +28,7 @@ const Dogs = () => {
 
     const handleClick = (uid: number) => {
         navigation({
-            pathname: 'dogs/camera/'+uid,
+            pathname: 'camera/'+uid,
         });
     }
     return (

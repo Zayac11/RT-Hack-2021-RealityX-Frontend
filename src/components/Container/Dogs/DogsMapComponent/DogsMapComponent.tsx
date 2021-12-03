@@ -9,7 +9,7 @@ const DogsMapComponent:FC<MyProps> = ({cameras, handleClick}) => {
     const isFetch = useSelector((state: AppStateType) => state.rubbish.isFetch)
     return (
         <div className={s.mapContainer}>
-            <YMaps query={{ apikey: process.env.REACT_APP_YANDEX_API_KEY || 'adcd12f1-d730-44e8-b757-a87de2b4b9db' }}>
+            <YMaps query={{ apikey: process.env.REACT_APP_YANDEX_API_KEY || '51294c2c-8c0b-4b35-b734-ea5700b611ec' }}>
                 <Map className={s.map}
                      defaultState={{ center: [54.901171, 52.297230], zoom: 14 }} >
                     <Clusterer
@@ -24,9 +24,10 @@ const DogsMapComponent:FC<MyProps> = ({cameras, handleClick}) => {
                             cameras.map((item) => {
                                 return (
                                     <Placemark key={item.uid} defaultGeometry={[Number(item.x_coordinate), Number(item.y_coordinate)]}
+                                               defaultProperties={{iconCaption: String(item.number_of_dogs)}}
                                                onClick={() => handleClick(item.uid)}
-                                               defaultOptions={{preset: item.number_of_dogs > 2 ? "islands#redDotIcon" : "islands#darkGreenDotIcon",
-                                                   iconColor: item.number_of_dogs > 2 ? 'red' : 'darkGreen',
+                                               defaultOptions={{preset: item.number_of_dogs > 2 ? "islands#blueDotIcon" : "islands#blueGreenDotIcon",
+                                                   iconColor: item.number_of_dogs > 2 ? 'blue' : 'blue',
                                                }}
                                     />
                                 )
