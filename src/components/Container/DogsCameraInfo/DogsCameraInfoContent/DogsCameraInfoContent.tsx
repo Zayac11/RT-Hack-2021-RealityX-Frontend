@@ -22,7 +22,7 @@ const DogsCameraInfoContent:FC<MyProps> = ({cameraData}) => {
                     <img src={arrow} alt='go back' />
                     Назад
                 </NavLink>
-                Последний снимок с Видеокамеры 1
+                Данные с Видеокамеры {cameraData.uid}
             </div>
             <div className={s.content}>
                 <div className={s.img}>
@@ -30,7 +30,7 @@ const DogsCameraInfoContent:FC<MyProps> = ({cameraData}) => {
                 </div>
                 <div className={s.info}>
                     <div className={s.infoTop}>
-                        Данные камеры
+                        Последний снимок
                     </div>
                     <div className={s.infoItems}>
                         <DogsCameraInfoItem img={point} label={'Местоположение'} data={cameraData.address || ''} alt='Placemark' />

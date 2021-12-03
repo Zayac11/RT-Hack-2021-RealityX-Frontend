@@ -48,8 +48,8 @@ const DogsCameraGraph:FC = () => {
             {
                 label: 'Количество собак',
                 data: numbers,
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
-                borderColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(53, 162, 235)',
+                backgroundColor: 'rgba(53, 162, 235, 0.5)',
             },
         ],
     };

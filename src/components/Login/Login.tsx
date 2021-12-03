@@ -46,7 +46,7 @@ const Login = () => {
         }
     }
     if(isLogin || isAuth) {
-        return <RedirectComponent />
+        window.location.href = '/'
     }
     return (
         <motion.div className='outer'
@@ -72,10 +72,10 @@ const Login = () => {
 
 export default Login;
 
-const RedirectComponent = () => {
-    const navigate = useNavigate()
-    navigate('/')
-    return (
-        <div></div>
-    )
-}
+// const RedirectComponent = () => {
+//     const navigate = useNavigate()
+//     navigate('/')
+//     return (
+//         <div></div>
+//     )
+// }
