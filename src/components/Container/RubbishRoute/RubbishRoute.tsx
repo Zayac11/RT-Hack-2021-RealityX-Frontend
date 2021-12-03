@@ -4,66 +4,75 @@ import { YMaps, Map } from 'react-yandex-maps';
 import {getCameras} from "../../../redux/rubbish-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../redux/redux-store";
-import {getFilledCoordinates} from "../../../utils/utils";
-
+import {motion} from "framer-motion";
+import RubbishRouteMap from "./RubbishRouteMap/RubbishRouteMap";
+import MapComponent from "../Rubbish/MapComponent/MapComponent";
+import ReloadBtn from "../Rubbish/ReloadBtn/ReloadBtn";
+import {getCurrentDate} from "../../../utils/utils";
+import MapRouteBtn from "../Rubbish/MapRouteBtn/MapRouteBtn";
+import { NavLink } from 'react-router-dom';
 
 const RubbishRoute:FC = () => {
     const dispatch = useDispatch()
-    const map = useRef<any>(null);
-    const setMapRef = useCallback((instance: Ref<any>) => {
-        map.current = instance;
-    }, []);
-    const mapState = {
-        center: [54.901171, 52.297230],
-        zoom: 12
-    };
-
-    const cameras = useSelector((state: AppStateType) => state.rubbish.cameras)
     const isFetch = useSelector((state: AppStateType) => state.rubbish.isFetch)
 
     useEffect(() => {
         dispatch(getCameras())
     }, [dispatch])
 
-    const [start, setStart] = useState(localStorage.getItem('start') || '')
-    const [end, setEnd] = useState(localStorage.getItem('end') || '')
-
-
-    const addRoute = (ymaps: any) => {
-        const multiRoute = new ymaps.multiRouter.MultiRoute(
-            {
-                referencePoints: getFilledCoordinates(cameras, start, end)
-                ,
-                params: {
-                    routingMode: "auto"
-                }
-            },
-            {
-                boundsAutoApply: true
-            }
-        );
-        console.log(multiRoute)
-        map.current?.geoObjects.add(multiRoute);
-    };
-
     return (
-        <>
-            {
-                !isFetch &&
-                <YMaps query={{ apikey: process.env.REACT_APP_YANDEX_API_KEY }}>
-                    <Map
-                        className={s.map}
-                        modules={["multiRouter.MultiRoute"]}
-                        state={mapState}
-                        instanceRef={setMapRef}
-                        onLoad={addRoute}
-                    >
+        <div className={s.outer}>
+            <motion.div className={s.topOuter}
+                        variants={animationContainer}
+                        animate='visible'
+                        initial='hidden'
+            >
+                <div className={s.top}>
+                    <div className={s.topInner}>
+                        <NavLink to='/' className={s.name}>
+                            ANYSEARCH
+                        </NavLink>
+                        <div className={s.logout}>
+                            Выйти
+                        </div>
+                    </div>
+                    <motion.div className={s.mapContainer} variants={animationItem}>
+                        {
+                            !isFetch &&
+                            <div>
+                                <RubbishRouteMap />
+                            </div>
+                        }
+                    </motion.div>
+                </div>
 
-                    </Map>
-                </YMaps>
-            }
-        </>
+            </motion.div>
+        </div>
     );
 };
 
 export default RubbishRoute;
+
+const animationContainer = {
+    hidden: {opacity: 1, scale: 1},
+    visible: {
+        opacity: 1,
+        scale: 1,
+
+        transition: {
+            delayChildren: 0.1,
+            staggerChildren: 0.1,
+        }
+    }
+}
+const animationItem = {
+    hidden: {x: 0, y: 50, opacity: 0},
+    visible: {
+        x: 0,
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.4,
+        },
+    }
+}

@@ -15,6 +15,7 @@
 }
 
 .button {
+    display: block;
     width: 100%;
     padding: 13px 0;
     border-radius: 4px;
@@ -26,19 +27,20 @@
     text-transform: uppercase;
     cursor: pointer;
     transition: all 0.2s ease;
-
 }
 
 .confirm {
     background-color: #326eb0;
-    &:active {
+    &:hover {
         background-color: #245284;
+        color: #fff;
     }
     margin-bottom: 20px;
 }
 .reject {
-    &:active {
+    &:hover {
         background-color: #C78B00;
     }
+    color: #fff;
     background-color: #ffb200;
 }

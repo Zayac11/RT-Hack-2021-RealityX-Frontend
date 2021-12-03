@@ -7,7 +7,7 @@ import {getCameras, updateCameras} from "../../../redux/rubbish-reducer";
 import MapComponent from "./MapComponent/MapComponent";
 import ReloadBtn from "./ReloadBtn/ReloadBtn";
 import MapRouteBtn from './MapRouteBtn/MapRouteBtn';
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import ModalAddress from "./ModalAddress/ModalAddress";
 import {getCurrentDate} from "../../../utils/utils";
 
@@ -43,9 +43,9 @@ const Rubbish = () => {
                 >
                     <div className={s.top}>
                         <div className={s.topInner}>
-                            <div className={s.name}>
+                            <NavLink to='/' className={s.name}>
                                 ANYSEARCH
-                            </div>
+                            </NavLink>
                             <div className={s.logout}>
                                 Выйти
                             </div>
