@@ -1,0 +1,23 @@
+@import "./src/common/commonStyles";
+
+.container {
+    margin-bottom: 12px;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #172e4b;
+
+    & img {
+        display: inline-block;
+        margin-left: 7px;
+    }
+}
+
+.info {
+    white-space: pre-wrap;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.5;
+}

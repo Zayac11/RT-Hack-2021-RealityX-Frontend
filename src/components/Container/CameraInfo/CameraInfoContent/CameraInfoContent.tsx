@@ -23,7 +23,7 @@ const CameraInfoContent:FC<MyProps> = ({cameraData}) => {
             </div>
             <div className={s.content}>
                 <div className={s.img}>
-                    <img src={cameraData.last_img} alt='camera' />
+                    <img src={cameraData.last_img_pred} alt='camera' />
                 </div>
                 <div className={s.info}>
                     <div className={s.infoTop}>

@@ -1,11 +1,14 @@
 import React, {FC} from 'react';
 import s from './LoginInput.module.scss'
+import {useDispatch} from "react-redux";
+import {authActions} from "../../../../redux/auth-reducer";
 
-const LoginInput:FC<MyProps> = ({text, value, type, handleKeyUp, setValue, setIsEmpty, setIsError}) => {
+const LoginInput:FC<MyProps> = ({text, value, type, handleKeyUp, setValue, setIsEmpty}) => {
+    const dispatch = useDispatch()
 
     const handleChange = (value: string) => {
         setIsEmpty(false)
-        setIsError(false)
+        dispatch(authActions.setLoginError(false))
         setValue(value)
     }
 
@@ -28,5 +31,4 @@ type MyProps = {
     handleKeyUp: (buttonId: number) => void,
     setValue: (value: string) => void,
     setIsEmpty: (isEmpty: boolean) => void
-    setIsError: (isError: boolean) => void
 }

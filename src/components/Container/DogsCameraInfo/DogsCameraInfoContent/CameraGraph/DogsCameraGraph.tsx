@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useState} from 'react';
-import s from './CameraGraph.module.scss'
+import s from './DogsCameraGraph.module.scss'
 import {useSelector} from "react-redux";
 import {AppStateType} from "../../../../../redux/redux-store";
 import {
@@ -26,12 +26,12 @@ ChartJS.register(
     Legend
 );
 
-const CameraGraph:FC = () => {
+const DogsCameraGraph:FC = () => {
     const [numbers, setNumbers] = useState<Array<number>>([])
-    const events = useSelector((state: AppStateType) => state.rubbish.events)
+    const events = useSelector((state: AppStateType) => state.dogs.events.reverse())
 
     useEffect(() => {
-        setNumbers(events.reverse().map((item) => item.filled_containers_number))
+        setNumbers(events.map((item) => item.dog_number))
     }, [events])
 
     const options = {
@@ -46,7 +46,7 @@ const CameraGraph:FC = () => {
         labels,
         datasets: [
             {
-                label: 'Наполненные контейнеры',
+                label: 'Количество собак',
                 data: numbers,
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
                 borderColor: 'rgb(255, 99, 132)',
@@ -61,4 +61,4 @@ const CameraGraph:FC = () => {
     );
 };
 
-export default CameraGraph;
+export default DogsCameraGraph;
