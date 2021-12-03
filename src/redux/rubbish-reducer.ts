@@ -1,13 +1,14 @@
 import {BaseThunkType, InferActionsTypes} from "./redux-store";
 import {StatusCodesEnum} from "../api/api";
 import {rubbishAPI} from "../api/rubbish-api";
-import {CameraType} from "../types/Types";
+import {CameraType, RubbishEventType} from "../types/Types";
 
 export type InitialStateType = typeof initialState
 let initialState = {
     timestamp: '' as string,
     cameras: [] as Array<CameraType>,
     cameraData: {} as CameraType,
+    events: [] as Array<RubbishEventType>,
     isFetch: false as boolean,
 }
 
@@ -23,6 +24,7 @@ const rubbishReducer = (state = initialState, action: RubbishActionsType):Initia
             return {
                 ...state,
                 cameraData: action.payload.camera,
+                events: action.payload.events,
             }
         case 'RT/RUBBISH/TOGGLE_IS_FETCHING':
             return {
@@ -39,8 +41,8 @@ export type RubbishActionsType = InferActionsTypes<typeof rubbishActions>
 export const rubbishActions = {
     camerasReceived: (timestamp: string, cameras: Array<CameraType>) =>
         ({type: 'RT/RUBBISH/CAMERAS_RECEIVED', payload: {timestamp, cameras}} as const),
-    currentCameraReceived: (camera: CameraType) =>
-        ({type: 'RT/RUBBISH/CURRENT_CAMERA_RECEIVED', payload: {camera}} as const),
+    currentCameraReceived: (camera: CameraType, events: Array<RubbishEventType>) =>
+        ({type: 'RT/RUBBISH/CURRENT_CAMERA_RECEIVED', payload: {camera, events}} as const),
     toggleIsFetching: (isFetch: boolean) =>
         ({type: 'RT/RUBBISH/TOGGLE_IS_FETCHING', payload: {isFetch}} as const),
 
@@ -91,7 +93,7 @@ export const getCurrentCamera = (cameraId: number): ThunkType => {
             let data = await rubbishAPI.getCurrentCamera(cameraId)
             console.log('getCurrentCamera', data)
             if(data.status === StatusCodesEnum.Success) {
-                dispatch(rubbishActions.currentCameraReceived(data.data.camera))
+                dispatch(rubbishActions.currentCameraReceived(data.data.camera, data.data.events))
             }
             dispatch(rubbishActions.toggleIsFetching(false))
 

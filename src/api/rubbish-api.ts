@@ -1,13 +1,14 @@
 import {APIResponseType, baseURL} from "./api";
 import axios from "axios";
-import {CameraType} from "../types/Types";
+import {CameraType, RubbishEventType} from "../types/Types";
 
 export type GetCamerasResponseType = {
     timestamp: string,
     cameras: Array<CameraType>
 }
 export type GetCurrentCameraResponseType = {
-    camera: CameraType
+    camera: CameraType,
+    events: Array<RubbishEventType>
 }
 
 export const rubbishAPI = {

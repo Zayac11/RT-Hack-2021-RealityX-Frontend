@@ -1,4 +1,4 @@
-@import "../../../../common/commonStyles";
+@import "./src/common/commonStyles";
 
 .container {
 }
@@ -28,4 +28,10 @@
     & img {
         width: 100%;
     }
+}
+
+.graph {
+    margin: 0 auto;
+    width: 1600px;
+    max-height: 300px;
 }

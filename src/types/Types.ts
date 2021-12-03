@@ -6,3 +6,9 @@ export type CameraType = {
     address?: string,
     last_img?: string,
 }
+
+export type RubbishEventType = {
+    id: number,
+    filled_containers_number: number,
+    containers_number: number,
+}
