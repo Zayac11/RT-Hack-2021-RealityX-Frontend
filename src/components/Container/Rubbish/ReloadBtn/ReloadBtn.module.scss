@@ -1,0 +1,36 @@
+@import "./src/common/commonStyles";
+
+.container {
+    @include flexible();
+}
+
+.refresh {
+    cursor: pointer;
+    background-color: #32b03d;
+    padding: 15px 33px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.67;
+    text-align: center;
+    color: #fff;
+    @include flexible();
+    & img {
+        margin-left: 12px;
+    }
+    margin-right: 30px;
+    transition: all 0.2s ease;
+    &:active {
+        background-color: #258E2E;
+    }
+}
+
+.time {
+    opacity: 0.5;
+    font-size: 14px;
+    font-weight: 500;
+    color: #000;
+    & span {
+        margin-left: 10px;
+    }
+}

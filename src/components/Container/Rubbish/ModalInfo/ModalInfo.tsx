@@ -1,8 +1,9 @@
 import React, {FC, useEffect} from 'react'
-import { Modal } from 'antd';
+import s from './ModalInfo.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {getCurrentCamera} from "../../../../redux/rubbish-reducer";
 import {AppStateType} from "../../../../redux/redux-store";
+import Modal from "react-png-modal";
 
 const ModalComponent:FC<MyProps> = ({visible, setVisible, uid}) => {
     const dispatch = useDispatch()
@@ -17,14 +18,15 @@ const ModalComponent:FC<MyProps> = ({visible, setVisible, uid}) => {
 
     return (
         <>
+            {/*@ts-ignore*/}
             <Modal
-                title="Modal 1000px width"
-                centered
-                visible={visible}
-                onOk={() => setVisible(false)}
-                onCancel={() => setVisible(false)}
-                width={1000}
+                closeModal={() => setVisible(false)}
+                open={visible}
+                alwaysOpen={false}
+                className={s.modal}
+                center
             >
+
                 <p>id = {uid}</p>
                 <p>some contents...</p>
                 <p>some contents...</p>

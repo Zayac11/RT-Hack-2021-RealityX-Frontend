@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import s from './Rubbish.module.scss'
-import {Clusterer, Map, Placemark, YMaps, ZoomControl} from 'react-yandex-maps'
+import {motion} from "framer-motion";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../redux/redux-store";
 import ModalInfo from './ModalInfo/ModalInfo';
 import {getCameras} from "../../../redux/rubbish-reducer";
+import MapComponent from "./MapComponent/MapComponent";
+import ReloadBtn from "./ReloadBtn/ReloadBtn";
+import MapRouteBtn from './MapRouteBtn/MapRouteBtn';
 
 const Rubbish = () => {
     const dispatch = useDispatch()
@@ -24,37 +27,60 @@ const Rubbish = () => {
     }
     return (
         <>
-            <YMaps query={{ apikey: 'adcd12f1-d730-44e8-b757-a87de2b4b9db' }}>
-                <Map className={s.map}
-                     defaultState={{ center: [55.796127, 49.106414], zoom: 16 }} >
-                    <Clusterer
-                        options={{
-                            preset: 'islands#blueClusterIcons',
-                            groupByCoordinates: false,
-                        }}
-                    >
-                        {
-                            cameras?.length > 0 &&
-                            cameras.map((item) => {
-                                return (
-                                    <Placemark key={item.uid} defaultGeometry={[Number(item.x_coordinate), Number(item.y_coordinate)]}
-                                               onClick={() => handleClick(item.uid)}
-                                               defaultOptions={{preset: item.is_filled ? "islands#redDotIcon" : "islands#darkGreenDotIcon",
-                                                   iconColor: item.is_filled ? 'red' : 'darkGreen',
-                                               }}
-                                    />
-                                )
-                            })
-                        }
-                    </Clusterer>
+            <div className={s.outer}>
+                <motion.div className={s.topOuter}
+                            variants={animationContainer}
+                            animate='visible'
+                            initial='hidden'
+                >
+                    <div className={s.top}>
+                        <div className={s.topInner}>
+                            <div className={s.name}>
+                                ANYSEARCH
+                            </div>
+                            <div className={s.logout}>
+                                Выйти
+                            </div>
+                        </div>
+                        <motion.div className={s.mapContainer} variants={animationItem}>
+                            <h2 className={s.title}>Карта c расположением видеокамер</h2>
+                            <MapComponent cameras={cameras} handleClick={handleClick} />
+                            <div className={s.buttons}>
+                                <ReloadBtn timestamp={'01.12.21, 13:09:31'} />
+                                <MapRouteBtn />
+                            </div>
+                        </motion.div>
+                    </div>
+                </motion.div>
+            </div>
 
-                    <ZoomControl defaultOptions={{size: "small"}}/>
-
-                </Map>
-            </YMaps>
             <ModalInfo visible={visible} setVisible={setVisible} uid={currentId} />
         </>
     );
 };
 
 export default Rubbish;
+
+const animationContainer = {
+    hidden: {opacity: 1, scale: 1},
+    visible: {
+        opacity: 1,
+        scale: 1,
+
+        transition: {
+            delayChildren: 0.1,
+            staggerChildren: 0.1,
+        }
+    }
+}
+const animationItem = {
+    hidden: {x: 0, y: 50, opacity: 0},
+    visible: {
+        x: 0,
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.4,
+        },
+    }
+}

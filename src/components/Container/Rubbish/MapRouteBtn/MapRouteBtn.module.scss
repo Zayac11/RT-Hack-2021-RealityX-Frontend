@@ -1,0 +1,21 @@
+@import "./src/common/commonStyles";
+
+.container {
+    padding: 14px 27px 15px 28px;
+    border-radius: 10px;
+    background-color: #326eb0;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.67;
+    text-align: center;
+    color: #fff;
+    @include flexible();
+    & img {
+        margin-left: 12px;
+    }
+    transition: all 0.2s ease;
+    &:active {
+        background-color: #245284;
+    }
+}

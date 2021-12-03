@@ -34,7 +34,6 @@ const RubbishRoute:FC = () => {
         map.current?.geoObjects.add(multiRoute);
     };
 
-    console.log(process.env.REACT_APP_YANDEX_API_KEY)
     return (
         <>
             <YMaps query={{ apikey: process.env.REACT_APP_YANDEX_API_KEY }}>

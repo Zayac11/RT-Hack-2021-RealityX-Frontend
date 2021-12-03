@@ -7,8 +7,8 @@ const Container:FC = () => {
     return (
         <>
             <Routes>
-                <Route path='/rubbish' element={<Rubbish />}/>
-                <Route path='/rubbish/route' element={<RubbishRoute />}/>
+                <Route path='/route' element={<RubbishRoute />}/>
+                <Route path='/' element={<Rubbish />}/>
             </Routes>
         </>
     );
