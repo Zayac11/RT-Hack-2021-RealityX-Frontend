@@ -5,8 +5,6 @@ import cl from 'classnames'
 
 const ReloadBtn:FC<MyProps> = ({timestamp, handleUpdate, isFetch}) => {
 
-    const arr = [s.refreshImg, isFetch && s.fetch];
-
     return (
         <div className={s.container}>
             <div onClick={() => handleUpdate()} className={s.refresh}>

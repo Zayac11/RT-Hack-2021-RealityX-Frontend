@@ -3,21 +3,39 @@ import s from './CameraInfoContent.module.scss'
 import {CameraType} from "../../../../types/Types";
 import CameraInfoItem from './CameraInfoItem/CameraInfoItem';
 import CameraGraph from './CameraGraph/CameraGraph';
+import {NavLink} from "react-router-dom";
+import point from '../../../../assets/images/camera_point.svg'
+import time from '../../../../assets/images/camera_time.svg'
+import loupe from '../../../../assets/images/camera_loupe.svg'
+import arrow from '../../../../assets/images/back_arrow.png'
+import {getCurrentDate} from "../../../../utils/utils";
+import CameraInfoStatus from './CameraInfoStatus/CameraInfoStatus';
 
 const CameraInfoContent:FC<MyProps> = ({cameraData}) => {
     return (
         <div className={s.container}>
-            {/*<div className={s.top}>*/}
-            {/*    Последний снимок с Видеокамеры 1*/}
-            {/*</div>*/}
-            {/*<div className={s.content}>*/}
-            {/*    <div className={s.info}>*/}
-            {/*        <CameraInfoItem />*/}
-            {/*    </div>*/}
-            {/*    <div className={s.img}>*/}
-            {/*        <img src={cameraData.last_img} alt='camera' />*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+            <div className={s.top}>
+                <NavLink to='/' className={s.backBtn}>
+                    <img src={arrow} alt='go back' />
+                    Назад
+                </NavLink>
+                Последний снимок с Видеокамеры 1
+            </div>
+            <div className={s.content}>
+                <div className={s.img}>
+                    <img src={cameraData.last_img} alt='camera' />
+                </div>
+                <div className={s.info}>
+                    <div className={s.infoTop}>
+                        Данные камеры
+                    </div>
+                    <div className={s.infoItems}>
+                        <CameraInfoItem img={point} label={'Местоположение'} data={cameraData.address || ''} alt='Placemark' />
+                        <CameraInfoItem img={time} label={'Время кадра'} data={getCurrentDate(cameraData.timestamp || '')} alt='Time' />
+                        <CameraInfoStatus img={loupe} label={'Статус'} data={cameraData.is_filled || false} alt='Status' />
+                    </div>
+                </div>
+            </div>
             <div className={s.graph}>
                 <CameraGraph />
             </div>

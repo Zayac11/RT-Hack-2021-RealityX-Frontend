@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import s from './CameraGraph.module.scss'
 import {useSelector} from "react-redux";
 import {AppStateType} from "../../../../../redux/redux-store";
@@ -14,6 +14,7 @@ import {
     Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import {CameraType} from "../../../../../types/Types";
 
 ChartJS.register(
     CategoryScale,
@@ -25,7 +26,7 @@ ChartJS.register(
     Legend
 );
 
-const CameraGraph = () => {
+const CameraGraph:FC = () => {
     const [numbers, setNumbers] = useState<Array<number>>([])
     const events = useSelector((state: AppStateType) => state.rubbish.events)
 
@@ -52,8 +53,6 @@ const CameraGraph = () => {
             },
         ],
     };
-
-
 
     return (
         <>

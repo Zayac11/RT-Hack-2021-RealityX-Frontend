@@ -9,7 +9,7 @@ export const getCurrentDate = (timestamp: string) => {
     let minutes = (date.getMinutes()<10?'0':'') + date.getMinutes();
     let seconds = (date.getSeconds()<10?'0':'') + date.getSeconds();
 
-    return mm + '.' + dd + '.' + yyyy + ' ' + hour + ':' + minutes + ':' + seconds
+    return mm + '.' + dd + '.' + yyyy + '  '  + hour + ':' + minutes + ':' + seconds
 }
 
 export const getFilledCoordinates = (cameras: Array<CameraType>, start: string, end: string) => {

@@ -19,5 +19,11 @@
     white-space: pre-wrap;
     font-size: 14px;
     font-weight: 500;
-    opacity: 0.5;
+    color: rgba(0,0,0,0.5);
+    @include flexible();
+
+    & img {
+        margin-left: 6px;
+        display: block;
+    }
 }

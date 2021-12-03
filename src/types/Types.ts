@@ -4,6 +4,7 @@ export type CameraType = {
     y_coordinate: string,
     is_filled: boolean,
     address?: string,
+    timestamp?: string,
     last_img?: string,
 }
 

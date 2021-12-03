@@ -4,13 +4,15 @@ import {useDispatch, useSelector} from "react-redux";
 import {getCurrentCamera} from "../../../redux/rubbish-reducer";
 import {AppStateType} from "../../../redux/redux-store";
 import CameraInfoContent from "./CameraInfoContent/CameraInfoContent";
-import {useParams} from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
+import logout from "../../../assets/images/logout.svg";
 
 const CameraInfo:FC = () => {
     const params = useParams()
 
     const dispatch = useDispatch()
     const [uid, setUid] = useState(Number(params.uid))
+    const isFetch = useSelector((state: AppStateType) => state.rubbish.isFetch)
     const cameraData = useSelector((state: AppStateType) => state.rubbish.cameraData)
 
     useEffect(() => {
@@ -20,9 +22,33 @@ const CameraInfo:FC = () => {
     }, [uid, dispatch])
 
     return (
-        <>
-            <CameraInfoContent cameraData={cameraData} />
-        </>
+        <div className={s.outer}>
+            <div className={s.topOuter}>
+                <div className={s.top}>
+                    <div className={s.topInner}>
+                        <NavLink to='/' className={s.name}>
+                            SAFECITY
+                        </NavLink>
+                        <div className={s.links}>
+                            <div className={s.current}>
+                                ДЕТЕКЦИЯ МУСОРА
+                            </div>
+                            <NavLink className={s.link} to='/'>
+                                ДЕТЕКЦИЯ СОБАК
+                            </NavLink>
+                        </div>
+                        <div className={s.logout}>
+                            Выйти
+                            <img src={logout} alt='logout' />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {
+                !isFetch &&
+                <CameraInfoContent cameraData={cameraData} />
+            }
+        </div>
     );
 }
 
