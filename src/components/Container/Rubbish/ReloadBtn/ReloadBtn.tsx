@@ -8,8 +8,8 @@ const ReloadBtn:FC<MyProps> = ({timestamp, handleUpdate, isFetch}) => {
     const arr = [s.refreshImg, isFetch && s.fetch];
 
     return (
-        <div onClick={() => handleUpdate()} className={s.container}>
-            <div className={s.refresh}>
+        <div className={s.container}>
+            <div onClick={() => handleUpdate()} className={s.refresh}>
                 ОБНОВИТЬ ДАННЫЕ
                 <img className={cl(s.refreshImg, isFetch && s.fetch)} src={refresh} alt='refresh' />
             </div>

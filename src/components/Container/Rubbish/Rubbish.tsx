@@ -9,6 +9,7 @@ import ReloadBtn from "./ReloadBtn/ReloadBtn";
 import MapRouteBtn from './MapRouteBtn/MapRouteBtn';
 import {useNavigate} from "react-router-dom";
 import ModalAddress from "./ModalAddress/ModalAddress";
+import {getCurrentDate} from "../../../utils/utils";
 
 const Rubbish = () => {
     const dispatch = useDispatch()
@@ -16,6 +17,7 @@ const Rubbish = () => {
     const [visible, setVisible] = useState(false)
 
     const cameras = useSelector((state: AppStateType) => state.rubbish.cameras)
+    const timestamp = useSelector((state: AppStateType) => state.rubbish.timestamp)
     const isFetch = useSelector((state: AppStateType) => state.rubbish.isFetch)
 
     const handleUpdate = () => {
@@ -52,7 +54,7 @@ const Rubbish = () => {
                             <h2 className={s.title}>Карта c расположением видеокамер</h2>
                             <MapComponent cameras={cameras} handleClick={handleClick} />
                             <div className={s.buttons}>
-                                <ReloadBtn isFetch={isFetch} handleUpdate={handleUpdate} timestamp={'01.12.21, 13:09:31'} />
+                                <ReloadBtn isFetch={isFetch} handleUpdate={handleUpdate} timestamp={getCurrentDate(timestamp)} />
                                 <MapRouteBtn setVisible={setVisible} />
                             </div>
                         </motion.div>
