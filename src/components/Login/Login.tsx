@@ -1,10 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import s from './Login.module.scss'
 import LoginInfo from './LoginInfo/LoginInfo';
 import {motion} from "framer-motion";
 import back from '../../assets/images/login_back.png'
+import {useDispatch, useSelector} from "react-redux";
+import {AppStateType} from "../../redux/redux-store";
+import {authActions} from "../../redux/auth-reducer";
+import {useNavigate} from "react-router-dom";
 
 const Login = () => {
+    const dispatch = useDispatch()
+    const isLogin = useSelector((state:AppStateType) => state.auth.isLogin)
+    const isAuth = useSelector((state:AppStateType) => state.auth.isAuth)
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+
+        return () => {
+            dispatch(authActions.setLoginError(false))
+        }
+    }, [])
 
     const animationContainer = {
         hidden: {opacity: 1, scale: 1},
@@ -30,7 +45,9 @@ const Login = () => {
             },
         }
     }
-
+    if(isLogin || isAuth) {
+        return <RedirectComponent />
+    }
     return (
         <motion.div className='outer'
                     variants={animationContainer}
@@ -54,3 +71,11 @@ const Login = () => {
 };
 
 export default Login;
+
+const RedirectComponent = () => {
+    const navigate = useNavigate()
+    navigate('/')
+    return (
+        <div></div>
+    )
+}

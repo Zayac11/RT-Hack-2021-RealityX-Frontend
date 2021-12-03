@@ -7,6 +7,7 @@ let initialState = {
     isLogin: false as boolean,
     isAdminInitialize: false as boolean,
     isLoginError: false as boolean,
+    isInitialize: false as boolean,
 }
 
 const authReducer = (state = initialState, action: AuthActionsType):InitialStateType  => {
@@ -36,6 +37,11 @@ const authReducer = (state = initialState, action: AuthActionsType):InitialState
                 ...state,
                 isLoginError: action.payload.isLoginError,
             }
+        case 'RT/AUTH/SET_INITIALIZE':
+            return {
+                ...state,
+                isInitialize: action.payload.isInitialize,
+            }
 
         default:
             return state;
@@ -55,6 +61,8 @@ export const authActions = {
         ({type: 'RT/AUTH/IS_ADMIN_INITIALIZE', payload: {isAdminInitialize}} as const),
     setLoginError: (isLoginError: boolean) =>
         ({type: 'RT/AUTH/SET_LOGIN_ERROR', payload: {isLoginError}} as const),
+    setInitialize: (isInitialize: boolean) =>
+        ({type: 'RT/AUTH/SET_INITIALIZE', payload: {isInitialize}} as const),
 }
 
 type ThunkType = BaseThunkType<AuthActionsType>
@@ -68,11 +76,13 @@ export const login = (username: string, password: string): ThunkType => {
                 localStorage.setItem('accessToken', data.access)
                 dispatch(authActions.login(true))
                 dispatch(authActions.setIsUserLogin(true))
+                dispatch(authActions.setInitialize(true))
             }
         }
         catch (e:any) {
             console.error('login', e.config)
             dispatch(authActions.setLoginError(true))
+            dispatch(authActions.setInitialize(true))
         }
     }
 }

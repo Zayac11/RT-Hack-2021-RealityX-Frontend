@@ -5,8 +5,15 @@ import RubbishRoute from "./RubbishRoute/RubbishRoute";
 import CameraInfo from "./CameraInfo/CameraInfo";
 import Dogs from "./Dogs/Dogs";
 import DogsCameraInfo from "./DogsCameraInfo/DogsCameraInfo";
+import {useSelector} from "react-redux";
+import {AppStateType} from "../../redux/redux-store";
 
 const Container:FC = () => {
+    const isAuth = useSelector((state:AppStateType) => state.auth.isAuth)
+
+    if(!isAuth) {
+        window.location.href='/login'
+    }
     return (
         <>
             <Routes>

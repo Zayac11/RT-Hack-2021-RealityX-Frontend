@@ -16,13 +16,12 @@ const DogsCameraInfoStatus:FC<MyProps> = ({img, label, data, alt}) => {
                     !data
                     ?
                         <>
-                            Угроза для окружающих не обнаружена
+                            Угроза не обнаружена
                             <img src={green} alt='green circle' />
                         </>
                     :
                         <>
                             Обнаружена потенциальная угроза
-                            для окружающих
                             <img src={red} alt='red circle' />
                         </>
                 }

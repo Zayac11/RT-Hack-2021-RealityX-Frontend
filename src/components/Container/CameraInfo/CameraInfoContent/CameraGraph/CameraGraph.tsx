@@ -31,7 +31,7 @@ const CameraGraph:FC = () => {
     const events = useSelector((state: AppStateType) => state.rubbish.events)
 
     useEffect(() => {
-        setNumbers(events.map((item) => item.filled_containers_number))
+        setNumbers(events.reverse().map((item) => item.filled_containers_number))
     }, [events])
 
     const options = {

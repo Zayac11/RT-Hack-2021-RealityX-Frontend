@@ -1,17 +1,25 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import s from './LoginInfo.module.scss'
 import leaders from '../../../assets/images/leaders.svg'
 import tatarstan from '../../../assets/images/tatarstan.svg'
 import submit from '../../../assets/images/login_submit.svg'
 import LoginInput from "./LoginInput/LoginInput";
 import LoginError from "./LoginError/LoginError";
+import {useDispatch, useSelector} from "react-redux";
+import {AppStateType} from "../../../redux/redux-store";
+import {authActions, login} from "../../../redux/auth-reducer";
 
 const LoginInfo:FC = () => {
-
-    const [login, setLogin] = useState('')
+    const dispatch = useDispatch()
+    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [isError, setIsError] = useState(false)
     const [isEmpty, setIsEmpty] = useState(false)
+    const isLoginError = useSelector((state:AppStateType) => state.auth.isLoginError)
+
+    useEffect(() => {
+        setIsError(isLoginError)
+    }, [isLoginError])
 
     const handleKeyUp = (buttonId: number) => {
         if(buttonId === 13) {
@@ -20,8 +28,11 @@ const LoginInfo:FC = () => {
     }
 
     const handleSubmit = () => {
-        if(password === '' || login === '') {
+        if(password === '' || username === '') {
             setIsEmpty(true)
+        }
+        else {
+            dispatch(login(username, password))
         }
     }
 
@@ -34,8 +45,8 @@ const LoginInfo:FC = () => {
                 Войдите в систему
             </div>
             <div className={s.form}>
-                <LoginInput setIsEmpty={setIsEmpty} setIsError={setIsError} setValue={setLogin} value={login} text='Логин' type='text' handleKeyUp={handleKeyUp} />
-                <LoginInput setIsEmpty={setIsEmpty} setIsError={setIsError} setValue={setPassword} value={password} text='Пароль' type='password' handleKeyUp={handleKeyUp} />
+                <LoginInput setIsEmpty={setIsEmpty} setValue={setUsername} value={username} text='Логин' type='text' handleKeyUp={handleKeyUp} />
+                <LoginInput setIsEmpty={setIsEmpty} setValue={setPassword} value={password} text='Пароль' type='password' handleKeyUp={handleKeyUp} />
                 {
                     isError &&
                         <LoginError text='Неправильный логин или пароль' />
