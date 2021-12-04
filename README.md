@@ -1,6 +1,7 @@
 # Getting Started
 
-This MVP was made by RealityX.
+This MVP was made by RealityX <br />
+Frontend for https://github.com/AlexGeniusMan/RT-Hack-2021-RealityX
 
 **Stack:**
 
