@@ -21,7 +21,7 @@ const DogsCameraInfoStatus:FC<MyProps> = ({img, label, data, alt}) => {
                         </>
                     :
                         <>
-                            Обнаружена скопление собак
+                            Обнаружено скопление собак
                             <img src={red} alt='red circle' />
                         </>
                 }
