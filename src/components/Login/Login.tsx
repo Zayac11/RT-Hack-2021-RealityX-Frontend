@@ -6,7 +6,6 @@ import back from '../../assets/images/login_back.png'
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {authActions} from "../../redux/auth-reducer";
-import {useNavigate} from "react-router-dom";
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -46,7 +45,7 @@ const Login = () => {
         }
     }
     if(isLogin || isAuth) {
-        return <RedirectComponent />
+        window.location.href = '/'
     }
     return (
         <motion.div className='outer'
@@ -71,11 +70,3 @@ const Login = () => {
 };
 
 export default Login;
-
-const RedirectComponent = () => {
-    const navigate = useNavigate()
-    navigate('/')
-    return (
-        <div></div>
-    )
-}

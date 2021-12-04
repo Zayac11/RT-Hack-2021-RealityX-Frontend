@@ -23,6 +23,7 @@ const Container:FC = () => {
                 <Route path='/camera/:uid' element={<CameraInfo />}/>
                 <Route path='/' element={<Rubbish />}/>
             </Routes>
+
         </>
     );
 };

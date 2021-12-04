@@ -24,6 +24,13 @@
     }
 }
 
+.disabled {
+    background-color: #60CD69;
+    &:active {
+        background-color: #60CD69;
+    }
+}
+
 .refreshImg {
     margin-left: 12px;
 }

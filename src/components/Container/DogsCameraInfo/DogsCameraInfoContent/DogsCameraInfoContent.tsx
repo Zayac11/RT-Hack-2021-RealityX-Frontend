@@ -12,6 +12,7 @@ import {getCurrentDate} from "../../../../utils/utils";
 import DogsCameraInfoStatus from './DogsCameraInfoStatus/DogsCameraInfoStatus';
 import {useSelector} from "react-redux";
 import {AppStateType} from "../../../../redux/redux-store";
+import NotifyButton from "../../../../common/NotifyButton/NotifyButton";
 
 const DogsCameraInfoContent:FC<MyProps> = ({cameraData}) => {
     const events = useSelector((state: AppStateType) => state.dogs.events)
@@ -22,7 +23,7 @@ const DogsCameraInfoContent:FC<MyProps> = ({cameraData}) => {
                     <img src={arrow} alt='go back' />
                     Назад
                 </NavLink>
-                Последний снимок с Видеокамеры 1
+                Данные с Видеокамеры {cameraData.uid}
             </div>
             <div className={s.content}>
                 <div className={s.img}>
@@ -30,7 +31,7 @@ const DogsCameraInfoContent:FC<MyProps> = ({cameraData}) => {
                 </div>
                 <div className={s.info}>
                     <div className={s.infoTop}>
-                        Данные камеры
+                        Последний снимок
                     </div>
                     <div className={s.infoItems}>
                         <DogsCameraInfoItem img={point} label={'Местоположение'} data={cameraData.address || ''} alt='Placemark' />
@@ -40,6 +41,7 @@ const DogsCameraInfoContent:FC<MyProps> = ({cameraData}) => {
                             events[0].dog_number > 2) || false
                         } alt='Status' />
                     </div>
+                    <NotifyButton />
                 </div>
             </div>
             <div className={s.graph}>

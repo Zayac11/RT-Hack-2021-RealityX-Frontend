@@ -2,6 +2,8 @@ import {BaseThunkType, InferActionsTypes} from "./redux-store";
 import {StatusCodesEnum} from "../api/api";
 import {rubbishAPI} from "../api/rubbish-api";
 import {CameraType, RubbishEventType} from "../types/Types";
+import {handleLogout} from "../utils/utils";
+import {authActions, AuthActionsType} from "./auth-reducer";
 
 export type InitialStateType = typeof initialState
 let initialState = {
@@ -48,7 +50,7 @@ export const rubbishActions = {
 
 }
 
-type ThunkType = BaseThunkType<RubbishActionsType>
+type ThunkType = BaseThunkType<RubbishActionsType | AuthActionsType>
 
 export const getCameras = (): ThunkType => {
     return async (dispatch) => {
@@ -58,6 +60,13 @@ export const getCameras = (): ThunkType => {
             console.log('getCameras', data)
             if(data.status === StatusCodesEnum.Success) {
                 dispatch(rubbishActions.camerasReceived(data.data.timestamp, data.data.cameras))
+            }
+            else if (data.status === StatusCodesEnum.Forbidden) {
+                localStorage.removeItem('accessToken')
+                dispatch(authActions.logout())
+            }
+            else {
+                throw new Error()
             }
             dispatch(rubbishActions.toggleIsFetching(false))
         }
@@ -77,6 +86,13 @@ export const updateCameras = (): ThunkType => {
             if(data.status === StatusCodesEnum.Success) {
                 dispatch(rubbishActions.camerasReceived(data.data.timestamp, data.data.cameras))
             }
+            else if (data.status === StatusCodesEnum.Forbidden) {
+                localStorage.removeItem('accessToken')
+                dispatch(authActions.logout())
+            }
+            else {
+                throw new Error()
+            }
             dispatch(rubbishActions.toggleIsFetching(false))
         }
         catch (e:any) {
@@ -94,6 +110,13 @@ export const getCurrentCamera = (cameraId: number): ThunkType => {
             console.log('getCurrentCamera', data)
             if(data.status === StatusCodesEnum.Success) {
                 dispatch(rubbishActions.currentCameraReceived(data.data.camera, data.data.events))
+            }
+            else if (data.status === StatusCodesEnum.Forbidden) {
+                localStorage.removeItem('accessToken')
+                dispatch(authActions.logout())
+            }
+            else {
+                throw new Error()
             }
             dispatch(rubbishActions.toggleIsFetching(false))
 

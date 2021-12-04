@@ -10,7 +10,7 @@ import ReloadBtn from "./ReloadBtn/ReloadBtn";
 import MapRouteBtn from './MapRouteBtn/MapRouteBtn';
 import {NavLink, useNavigate} from "react-router-dom";
 import ModalAddress from "./ModalAddress/ModalAddress";
-import {getCurrentDate} from "../../../utils/utils";
+import {getCurrentDate, handleLogout} from "../../../utils/utils";
 
 const Rubbish = () => {
     const dispatch = useDispatch()
@@ -55,7 +55,7 @@ const Rubbish = () => {
                                     ДЕТЕКЦИЯ СОБАК
                                 </NavLink>
                             </div>
-                            <div className={s.logout}>
+                            <div onClick={() => handleLogout(dispatch)} className={s.logout}>
                                 Выйти
                                 <img src={logout} alt='logout' />
                             </div>

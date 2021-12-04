@@ -26,8 +26,8 @@ const DogsMapComponent:FC<MyProps> = ({cameras, handleClick}) => {
                                     <Placemark key={item.uid} defaultGeometry={[Number(item.x_coordinate), Number(item.y_coordinate)]}
                                                defaultProperties={{iconCaption: String(item.number_of_dogs)}}
                                                onClick={() => handleClick(item.uid)}
-                                               defaultOptions={{preset: item.number_of_dogs > 2 ? "islands#blueDotIcon" : "islands#blueDotIcon",
-                                                   iconColor: 'blue',
+                                               defaultOptions={{preset: item.number_of_dogs > 2 ? "islands#redDotIcon" : "islands#greenDotIcon",
+                                                   iconColor: item.number_of_dogs > 2 ? "red" : "green",
                                                }}
                                     />
                                 )

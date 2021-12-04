@@ -25,8 +25,8 @@ const MapComponent:FC<MyProps> = ({cameras, handleClick}) => {
                                 return (
                                     <Placemark key={item.uid} defaultGeometry={[Number(item.x_coordinate), Number(item.y_coordinate)]}
                                                onClick={() => handleClick(item.uid)}
-                                               defaultOptions={{preset: item.is_filled ? "islands#redDotIcon" : "islands#darkGreenDotIcon",
-                                                   iconColor: item.is_filled ? 'red' : 'darkGreen',
+                                               defaultOptions={{preset: item.is_filled ? "islands#redDotIcon" : "islands#greenDotIcon",
+                                                   iconColor: item.is_filled ? 'red' : 'green',
                                                }}
                                     />
                                 )

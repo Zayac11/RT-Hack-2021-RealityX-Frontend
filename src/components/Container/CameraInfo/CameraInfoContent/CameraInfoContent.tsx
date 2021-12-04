@@ -10,6 +10,7 @@ import loupe from '../../../../assets/images/camera_loupe.svg'
 import arrow from '../../../../assets/images/back_arrow.png'
 import {getCurrentDate} from "../../../../utils/utils";
 import CameraInfoStatus from './CameraInfoStatus/CameraInfoStatus';
+import NotifyButton from "../../../../common/NotifyButton/NotifyButton";
 
 const CameraInfoContent:FC<MyProps> = ({cameraData}) => {
     return (
@@ -19,7 +20,7 @@ const CameraInfoContent:FC<MyProps> = ({cameraData}) => {
                     <img src={arrow} alt='go back' />
                     Назад
                 </NavLink>
-                Последний снимок с Видеокамеры 1
+                Данные с Видеокамеры {cameraData.uid}
             </div>
             <div className={s.content}>
                 <div className={s.img}>
@@ -27,13 +28,14 @@ const CameraInfoContent:FC<MyProps> = ({cameraData}) => {
                 </div>
                 <div className={s.info}>
                     <div className={s.infoTop}>
-                        Данные камеры
+                        Последний снимок
                     </div>
                     <div className={s.infoItems}>
                         <CameraInfoItem img={point} label={'Местоположение'} data={cameraData.address || ''} alt='Placemark' />
                         <CameraInfoItem img={time} label={'Время кадра'} data={getCurrentDate(cameraData.timestamp || '')} alt='Time' />
                         <CameraInfoStatus img={loupe} label={'Статус'} data={cameraData.is_filled || false} alt='Status' />
                     </div>
+                    <NotifyButton />
                 </div>
             </div>
             <div className={s.graph}>

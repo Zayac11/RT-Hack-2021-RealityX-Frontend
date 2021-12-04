@@ -14,6 +14,7 @@
     font-weight: 500;
     color: #fff;
     @include flexible();
+    justify-content: space-between;
 }
 
 .backBtn {
@@ -51,7 +52,8 @@
 .info {
     width: 33%;
     border-radius: 10px;
-    border: solid 1px #e5e5e5
+    border: solid 1px #e5e5e5;
+    position: relative;
 }
 
 .infoTop {

@@ -1,4 +1,5 @@
 import {CameraType} from "../types/Types";
+import {authActions} from "../redux/auth-reducer";
 
 export const getCurrentDate = (timestamp: string) => {
     let date = new Date(timestamp)
@@ -9,7 +10,7 @@ export const getCurrentDate = (timestamp: string) => {
     let minutes = (date.getMinutes()<10?'0':'') + date.getMinutes();
     let seconds = (date.getSeconds()<10?'0':'') + date.getSeconds();
 
-    return mm + '.' + dd + '.' + yyyy + '  '  + hour + ':' + minutes + ':' + seconds
+    return dd + '.' + mm + '.' + yyyy + '  '  + hour + ':' + minutes + ':' + seconds
 }
 
 export const getFilledCoordinates = (cameras: Array<CameraType>, start: string, end: string) => {
@@ -19,4 +20,8 @@ export const getFilledCoordinates = (cameras: Array<CameraType>, start: string, 
     filledCoordinates = filledCoordinatesItems.map((item) => [Number(item.x_coordinate), Number(item.y_coordinate)])
     console.log([start, ...filledCoordinates, end])
     return [start, ...filledCoordinates, end]
+}
+export const handleLogout = (dispatch: any) => {
+    localStorage.removeItem('accessToken')
+    dispatch(authActions.logout())
 }

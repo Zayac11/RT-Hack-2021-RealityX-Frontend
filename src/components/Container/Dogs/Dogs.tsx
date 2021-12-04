@@ -7,7 +7,7 @@ import {AppStateType} from "../../../redux/redux-store";
 import DogsMapComponent from "./DogsMapComponent/DogsMapComponent";
 import DogsReloadBtn from "./ReloadBtn/DogsReloadBtn";
 import {NavLink, useNavigate} from "react-router-dom";
-import {getCurrentDate} from "../../../utils/utils";
+import {getCurrentDate, handleLogout} from "../../../utils/utils";
 import {getDogsCameras, updateDogsCameras} from "../../../redux/dogs-reducer";
 
 const Dogs = () => {
@@ -52,7 +52,7 @@ const Dogs = () => {
                                     ДЕТЕКЦИЯ СОБАК
                                 </div>
                             </div>
-                            <div className={s.logout}>
+                            <div onClick={() => handleLogout(dispatch)} className={s.logout}>
                                 Выйти
                                 <img src={logout} alt='logout' />
                             </div>

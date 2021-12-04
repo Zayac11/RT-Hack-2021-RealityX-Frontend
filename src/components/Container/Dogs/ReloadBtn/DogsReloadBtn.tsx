@@ -7,7 +7,7 @@ const DogsReloadBtn:FC<MyProps> = ({timestamp, handleUpdate, isFetch}) => {
 
     return (
         <div className={s.container}>
-            <div onClick={() => handleUpdate()} className={s.refresh}>
+            <div onClick={ !isFetch ? () => handleUpdate() : () => {}} className={cl(s.refresh, isFetch && s.disabled)}>
                 ОБНОВИТЬ ДАННЫЕ
                 <img className={cl(s.refreshImg, isFetch && s.fetch)} src={refresh} alt='refresh' />
             </div>
