@@ -7,7 +7,7 @@ import LoginInput from "./LoginInput/LoginInput";
 import LoginError from "./LoginError/LoginError";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "../../../redux/redux-store";
-import {authActions, login} from "../../../redux/auth-reducer";
+import {login} from "../../../redux/auth-reducer";
 
 const LoginInfo:FC = () => {
     const dispatch = useDispatch()

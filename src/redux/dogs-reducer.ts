@@ -4,6 +4,7 @@ import {rubbishAPI} from "../api/rubbish-api";
 import {CameraType, DogsCameraType, DogsEventType, RubbishEventType} from "../types/Types";
 import {rubbishActions, RubbishActionsType} from "./rubbish-reducer";
 import {dogsAPI} from "../api/dogs-api";
+import {authActions, AuthActionsType} from "./auth-reducer";
 
 export type InitialStateType = typeof initialState
 let initialState = {
@@ -43,7 +44,7 @@ export const dogsActions = {
 
 }
 
-type ThunkType = BaseThunkType<DogsActionsType | RubbishActionsType>
+type ThunkType = BaseThunkType<DogsActionsType | RubbishActionsType | AuthActionsType>
 
 export const getDogsCameras = (): ThunkType => {
     return async (dispatch) => {
@@ -53,6 +54,13 @@ export const getDogsCameras = (): ThunkType => {
             console.log('getDogsCameras', data)
             if(data.status === StatusCodesEnum.Success) {
                 dispatch(dogsActions.camerasReceived(data.data.timestamp, data.data.cameras))
+            }
+            else if (data.status === StatusCodesEnum.Forbidden) {
+                localStorage.removeItem('accessToken')
+                dispatch(authActions.logout())
+            }
+            else {
+                throw new Error()
             }
             dispatch(rubbishActions.toggleIsFetching(false))
         }
@@ -72,6 +80,13 @@ export const updateDogsCameras = (): ThunkType => {
             if(data.status === StatusCodesEnum.Success) {
                 dispatch(dogsActions.camerasReceived(data.data.timestamp, data.data.cameras))
             }
+            else if (data.status === StatusCodesEnum.Forbidden) {
+                localStorage.removeItem('accessToken')
+                dispatch(authActions.logout())
+            }
+            else {
+                throw new Error()
+            }
             dispatch(rubbishActions.toggleIsFetching(false))
         }
         catch (e:any) {
@@ -89,6 +104,13 @@ export const getDogsCurrentCamera = (cameraId: number): ThunkType => {
             console.log('getCurrentDogsCamera', data)
             if(data.status === StatusCodesEnum.Success) {
                 dispatch(dogsActions.currentCameraReceived(data.data.camera, data.data.events))
+            }
+            else if (data.status === StatusCodesEnum.Forbidden) {
+                localStorage.removeItem('accessToken')
+                dispatch(authActions.logout())
+            }
+            else {
+                throw new Error()
             }
             dispatch(rubbishActions.toggleIsFetching(false))
 
