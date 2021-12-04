@@ -24,6 +24,7 @@ export type DogsCameraType = {
     timestamp?: string,
     last_img?: string,
     last_img_pred?: string,
+    events?: Array<DogsEventType>
 }
 
 export type DogsEventType = {
